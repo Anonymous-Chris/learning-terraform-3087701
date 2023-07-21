@@ -62,7 +62,7 @@ resource "aws_security_group_rule" "blog_https_in"{
 }
 
 //step 5
-resource "aws_security_group_rule" "blog_everything out"{
+resource "aws_security_group_rule" "blog_everything_out"{
   type              = "ingress"
   from_port         = 0
   to_port           = 0
