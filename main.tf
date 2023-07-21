@@ -24,11 +24,37 @@ resource "aws_instance" "blog" {
   instance_type = var.instance_type
   
   //step 6
-  vpc_security_group_ids = [aws_security_group.blog.id]
+  vpc_security_group_ids = [module.security-group-modules.security_group_id]
 
   tags = {
     Name = "Learning Terraform"
   }
+}
+
+//step 7
+module "security-group-modules" {
+  source              = "terraform-aws-modules/security-group/aws"
+  version             = "5.1.0"
+  name                = "blog_new"
+
+  vpc_id              = data.aws_vpc.default.id
+  ingress_rules       = ["http-80-tcp", "https-443-tcp"]
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+
+  egress_rules        = ["all-all"]
+  egress_cidr_blocks  = ["0.0.0.0/0"]
+}
+
+
+//step 7
+module "security-group-modules" {
+  source              = "terraform-aws-modules/security-group/aws"
+  version             = "5.1.0"
+  name                = "blog_new"
+
+  vpc_id              = data.aws_vpc.default.id
+  egress_rules        = ["all-all"]
+  egress_cidr_blocks  = ["0.0.0.0/0"]
 }
 
 //step 2
