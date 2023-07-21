@@ -24,7 +24,7 @@ resource "aws_instance" "blog" {
   instance_type = var.instance_type
   
   //step 6
-  vpc_security_groups_id = [aws_security_group.blog.id]
+  vpc_security_groups_ids = [aws_security_group.blog.id]
 
   tags = {
     Name = "Learning Terraform"
