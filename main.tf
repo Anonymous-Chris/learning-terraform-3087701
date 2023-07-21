@@ -45,18 +45,6 @@ module "security-group-modules" {
   egress_cidr_blocks  = ["0.0.0.0/0"]
 }
 
-
-//step 7
-module "security-group-modules" {
-  source              = "terraform-aws-modules/security-group/aws"
-  version             = "5.1.0"
-  name                = "blog_new"
-
-  vpc_id              = data.aws_vpc.default.id
-  egress_rules        = ["all-all"]
-  egress_cidr_blocks  = ["0.0.0.0/0"]
-}
-
 //step 2
 resource "aws_security_group" "blog"{
   name        = "blog"
